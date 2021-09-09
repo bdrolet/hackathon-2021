@@ -35,3 +35,4 @@ Werkzeug==2.0.1
 wrapt==1.12.1
 webargs
 flask-cors
+flask-marshmallow

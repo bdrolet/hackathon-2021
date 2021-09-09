@@ -1,3 +1,5 @@
+from app.models.epic import CreateEpicResp, Epic
+from app.models.epic import create_epic_resp
 from typing import Dict
 from typing import Any
 from flask import blueprints
@@ -26,3 +28,14 @@ def hello_world(*, name: str) -> Dict[str, str]:
 def get_response() -> Dict[str, Any]:
     # call calculate_estimate function in decomposition_handler
     return calculate_estimate(request.json["features"])
+
+
+@blueprint.route("/api/jira/epic/create", methods=["POST"])
+def create_epic() -> CreateEpicResp:
+    # TOOO: create an epic
+    epic = Epic(
+        id="HACK-1234",
+        name="The best feature ever made...probably.",
+        url="http://lyft.com",
+    )
+    return create_epic_resp.dump(obj=epic)
