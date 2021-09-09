@@ -34,7 +34,8 @@ def hello_world(*, name: str) -> Dict[str, str]:
                 "worst": fields.Int(missing=3, validate=validate.Length(min=1)),
             }
         ]
-    }
+    },
+    location="query",
 )
 def get_response(**kwargs) -> Dict[str, Any]:
     # call calculate_estimate function in decomposition_handler
