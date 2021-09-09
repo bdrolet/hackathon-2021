@@ -46,3 +46,7 @@ pip-log.txt
 /build
 .coverage
 .env.local
+
+
+#venv
+/env
