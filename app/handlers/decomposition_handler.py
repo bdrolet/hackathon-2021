@@ -14,7 +14,16 @@ def calculate_estimate(tasks: List[Dict[str, Any]]) -> Dict[str, Any]:
         variance = pow(individual_standard_dev, 2)
         sum_of_variances += variance
         sum_of_expected_cases += expected_case
-        response["features"].append({"id": task["id"], "expected": expected_case})
+        response["features"].append(
+            {
+                "id": task["id"],
+                "task": task["task"],
+                "best": task["best"],
+                "likely": task["likely"],
+                "worst": task["worst"],
+                "expected": expected_case
+            }
+        )
     total_standard_dev = math.sqrt(sum_of_variances)
     response["estimate"] = round(sum_of_expected_cases + 0.84 * total_standard_dev)
     # TODO: Adjust confidence by using historical data.
