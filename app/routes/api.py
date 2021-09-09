@@ -22,6 +22,20 @@ def hello_world(*, name: str) -> Dict[str, str]:
     return {"msg": f"Hello, {name}!"}
 
 
-def get_response(tasks: List[Dict[str, Any]]):
+@blueprint.route("/api/decomp", methods=["GET"])
+@use_kwargs(
+    {
+        "features": [
+            {
+                "id": fields.Int(missing=-1, validate=validate.Length(min=1)),
+                "task": fields.Str(missing="task1", validate=validate.Length(min=1)),
+                "best": fields.Int(missing=1, validate=validate.Length(min=1)),
+                "likely": fields.Int(missing=2, validate=validate.Length(min=1)),
+                "worst": fields.Int(missing=3, validate=validate.Length(min=1)),
+            }
+        ]
+    }
+)
+def get_response(**kwargs: List[Dict[str, Any]]):
     # call calculate_estimate function in decomposition_handler
-    return calculate_estimate(tasks)
+    return calculate_estimate(kwargs["features"])
