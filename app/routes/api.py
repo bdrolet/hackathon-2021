@@ -1,7 +1,7 @@
 from typing import Dict
-from typing import List
 from typing import Any
 from flask import blueprints
+from flask import request
 from marshmallow import fields
 from marshmallow import validate
 from webargs.flaskparser import use_kwargs
@@ -22,21 +22,7 @@ def hello_world(*, name: str) -> Dict[str, str]:
     return {"msg": f"Hello, {name}!"}
 
 
-@blueprint.route("/api/decomp", methods=["GET"])
-@use_kwargs(
-    {
-        "features": [
-            {
-                "id": fields.Str(missing=-"a0", validate=validate.Length(min=1)),
-                "task": fields.Str(missing="task1", validate=validate.Length(min=1)),
-                "best": fields.Int(missing=1, validate=validate.Length(min=1)),
-                "likely": fields.Int(missing=2, validate=validate.Length(min=1)),
-                "worst": fields.Int(missing=3, validate=validate.Length(min=1)),
-            }
-        ]
-    },
-    location="query",
-)
-def get_response(**kwargs) -> Dict[str, Any]:
+@blueprint.route("/api/decomp", methods=["POST"])
+def get_response() -> Dict[str, Any]:
     # call calculate_estimate function in decomposition_handler
-    return calculate_estimate(kwargs["features"])
+    return calculate_estimate(request.json["features"])

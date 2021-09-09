@@ -21,7 +21,7 @@ def calculate_estimate(tasks: List[Dict[str, Any]]) -> Dict[str, Any]:
                 "best": task["best"],
                 "likely": task["likely"],
                 "worst": task["worst"],
-                "expected": expected_case
+                "expected": round(expected_case)
             }
         )
     total_standard_dev = math.sqrt(sum_of_variances)
