@@ -36,6 +36,6 @@ def hello_world(*, name: str) -> Dict[str, str]:
         ]
     }
 )
-def get_response(**kwargs):
+def get_response(**kwargs) -> Dict[str, Any]:
     # call calculate_estimate function in decomposition_handler
     return calculate_estimate(kwargs["features"])
