@@ -1,5 +1,4 @@
 from app.models.epic import CreateEpicResp, Epic
-from app.models.epic import create_epic_resp
 from typing import Dict
 from typing import Any
 from flask import blueprints
@@ -38,4 +37,4 @@ def create_epic() -> CreateEpicResp:
         name="The best feature ever made...probably.",
         url="http://lyft.com",
     )
-    return create_epic_resp.dump(obj=epic)
+    return CreateEpicResp().dump(obj=epic)
