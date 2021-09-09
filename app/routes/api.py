@@ -1,11 +1,13 @@
-from app.models.epic import CreateEpicResp, Epic
+from app.models.issue import IssueType
+from app.models.issue import CreateIssueResp, Issue
+from app.models import create_issue_resp, create_issue_req
 from typing import Dict
 from typing import Any
 from flask import blueprints
 from flask import request
 from marshmallow import fields
 from marshmallow import validate
-from webargs.flaskparser import use_kwargs
+from webargs.flaskparser import use_kwargs, use_args
 from app.handlers.decomposition_handler import calculate_estimate
 
 
@@ -29,12 +31,15 @@ def get_response() -> Dict[str, Any]:
     return calculate_estimate(request.json["features"])
 
 
-@blueprint.route("/api/jira/epic/create", methods=["POST"])
-def create_epic() -> CreateEpicResp:
+@blueprint.route("/api/issue/create", methods=["POST"])
+def create_issue() -> CreateIssueResp:
     # TOOO: create an epic
-    epic = Epic(
-        id="HACK-1234",
-        name="The best feature ever made...probably.",
-        url="http://lyft.com",
+
+    return create_issue_resp.dump(
+        obj=Issue(
+            id="HACK-1234",
+            name="The best feature ever made...probably.",
+            issue_type=IssueType.EPIC.value,
+            url="http://lyft.com",
+        )
     )
-    return CreateEpicResp().dump(obj=epic)

@@ -1,5 +1,5 @@
-from app.models.epic import CreateEpicReq
-from app.models.epic import CreateEpicResp
+from app.models.issue import CreateIssueReq
+from app.models.issue import CreateIssueResp
 
-create_epic_req = CreateEpicReq()
-create_epic_resp = CreateEpicResp()
+create_issue_req = CreateIssueReq()
+create_issue_resp = CreateIssueResp()
