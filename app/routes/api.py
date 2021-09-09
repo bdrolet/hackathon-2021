@@ -27,7 +27,7 @@ def hello_world(*, name: str) -> Dict[str, str]:
     {
         "features": [
             {
-                "id": fields.Int(missing=-1, validate=validate.Length(min=1)),
+                "id": fields.Str(missing=-"a0", validate=validate.Length(min=1)),
                 "task": fields.Str(missing="task1", validate=validate.Length(min=1)),
                 "best": fields.Int(missing=1, validate=validate.Length(min=1)),
                 "likely": fields.Int(missing=2, validate=validate.Length(min=1)),
