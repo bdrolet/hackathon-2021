@@ -10,6 +10,7 @@ from marshmallow import validate
 from webargs.flaskparser import use_kwargs, use_args
 from app.handlers.decomposition_handler import calculate_estimate
 from app.handlers.fuzzy_logic_handler import calculate_fuzzy_estimate
+from app.handlers.t_shirt_handler import get_net_business_value
 
 
 blueprint = blueprints.Blueprint("hackathon-2021", __name__)
@@ -36,6 +37,12 @@ def get_response() -> Dict[str, Any]:
 def get_fuzzy_response() -> Dict[str, Any]:
     # call calculate_fuzzy_estimate function in fuzzy_logic_handler
     return calculate_fuzzy_estimate(request.json["features"])
+
+
+@blueprint.route("/api/t-shirt", methods=["POST"])
+def get_t_shirt_response() -> Dict[str, Any]:
+    # call get_net_business_value function in t_shirt_handler
+    return get_net_business_value(request.json["features"])
 
 
 @blueprint.route("/api/issue/create", methods=["POST"])
