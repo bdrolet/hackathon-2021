@@ -52,6 +52,7 @@ def create_issue() -> CreateIssueResp:
     issue = jira_client.create_issue(
         name=data["name"],
         story_points=data["story_points"] if "story_points" in data else None,
-        issue_type=data["issue_type"]
+        issue_type=data["issue_type"],
+        parent_id=data["parent_id"] if "parent_id" in data else None
     )
     return create_issue_resp.dump(obj=issue)

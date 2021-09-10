@@ -22,12 +22,14 @@ class Issue:
     issue_type: IssueType
     url: str
     story_points: Optional[int]
+    parent_id: Optional[str]
 
 
 class CreateIssueReq(Schema):
     name = fields.Str(required=True)
     issue_type = EnumField(IssueType)
     story_points = fields.Int(required=False)
+    parent_id = fields.Str(required=False)
 
 
 class CreateIssueResp(Schema):
@@ -36,3 +38,4 @@ class CreateIssueResp(Schema):
     name = fields.Str(required=True)
     issue_type = EnumField(IssueType)
     story_points = fields.Int(required=False)
+    parent_id = fields.Str(required=False)
