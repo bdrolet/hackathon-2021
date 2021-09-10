@@ -9,6 +9,7 @@ from marshmallow import fields
 from marshmallow import validate
 from webargs.flaskparser import use_kwargs, use_args
 from app.handlers.decomposition_handler import calculate_estimate
+from app.handlers.fuzzy_logic_handler import calculate_fuzzy_estimate
 
 
 blueprint = blueprints.Blueprint("hackathon-2021", __name__)
@@ -29,6 +30,12 @@ def hello_world(*, name: str) -> Dict[str, str]:
 def get_response() -> Dict[str, Any]:
     # call calculate_estimate function in decomposition_handler
     return calculate_estimate(request.json["features"])
+
+
+@blueprint.route("/api/fuzzy", methods=["POST"])
+def get_fuzzy_response() -> Dict[str, Any]:
+    # call calculate_fuzzy_estimate function in fuzzy_logic_handler
+    return calculate_fuzzy_estimate(request.json["features"])
 
 
 @blueprint.route("/api/issue/create", methods=["POST"])
