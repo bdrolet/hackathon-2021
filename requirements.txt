@@ -36,3 +36,4 @@ wrapt==1.12.1
 webargs
 flask-cors
 flask-marshmallow
+marshmallow_enum

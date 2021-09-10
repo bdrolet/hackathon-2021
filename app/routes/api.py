@@ -1,6 +1,7 @@
 from app.models.issue import IssueType
 from app.models.issue import CreateIssueResp, Issue
 from app.models import create_issue_resp, create_issue_req
+from app.services import jira
 from typing import Dict
 from typing import Any
 from flask import blueprints
@@ -48,12 +49,5 @@ def get_t_shirt_response() -> Dict[str, Any]:
 @blueprint.route("/api/issue/create", methods=["POST"])
 def create_issue() -> CreateIssueResp:
     # TOOO: create an epic
-
-    return create_issue_resp.dump(
-        obj=Issue(
-            id="HACK-1234",
-            name="The best feature ever made...probably.",
-            issue_type=IssueType.EPIC.value,
-            url="http://lyft.com",
-        )
-    )
+    issue = jira.create_issue(name="this name", story_points=2)
+    return create_issue_resp.dump(obj=issue)
