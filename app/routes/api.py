@@ -48,8 +48,10 @@ def get_t_shirt_response() -> Dict[str, Any]:
 
 @blueprint.route("/api/issue/create", methods=["POST"])
 def create_issue() -> CreateIssueResp:
-    # TODO: get values from request.
+    data = create_issue_req.load(request.get_json())
     issue = jira_client.create_issue(
-        name="this name", story_points=2, issue_type=IssueType.EPIC
+        name=data["name"],
+        story_points=data["story_points"] if "story_points" in data else None,
+        issue_type=data["issue_type"]
     )
     return create_issue_resp.dump(obj=issue)
