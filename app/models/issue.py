@@ -8,9 +8,10 @@ from marshmallow_enum import EnumField
 @dataclass
 class IssueType(Enum):
     UNKNOWN = 0
-    EPIC = 1
-    STORY = 2
-    TASK = 3
+    EPIC = "Epic"
+    STORY = "Story"
+    TASK = "Task"
+    BUG = "Bug"
 
 
 @dataclass

@@ -37,3 +37,4 @@ webargs
 flask-cors
 flask-marshmallow
 marshmallow_enum
+jira
