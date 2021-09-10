@@ -1,3 +1,4 @@
+from typing import Optional
 from enum import Enum
 from marshmallow import fields
 from marshmallow.schema import Schema
@@ -20,7 +21,7 @@ class Issue:
     name: str
     issue_type: IssueType
     url: str
-    story_points: int
+    story_points: Optional[int]
 
 
 class CreateIssueReq(Schema):
